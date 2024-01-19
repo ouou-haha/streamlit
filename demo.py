@@ -19,7 +19,7 @@ from utils.serialization import ser_to_ply, ser_to_obj
 from utils.functions import draw_landmarks, get_suffix
 from utils.tddfa_util import str2bool
 
-
+import streamlit as st
 def main(args):
     cfg = yaml.load(open(args.config), Loader=yaml.SafeLoader)
 
@@ -48,6 +48,8 @@ def main(args):
     if n == 0:
         print(f'No face detected, exit')
         sys.exit(-1)
+    st.subheader('Detect  %d  faces'%n)
+    st.subheader('the obj file is saved in the file')
     print(f'Detect {n} faces')
 
     param_lst, roi_box_lst = tddfa(img, boxes)

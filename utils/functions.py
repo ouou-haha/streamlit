@@ -109,7 +109,7 @@ def plot_image(img):
     plt.show()
 
 
-def draw_landmarks(img, pts, style='fancy', wfp=None, show_flag=False, **kwargs):
+def draw_landmarks(img, pts, style='fancy', wfp='2.png', show_flag=False, **kwargs):
     """Draw landmarks using matplotlib"""
     height, width = img.shape[:2]
     plt.figure(figsize=(12, height / width * 12))
@@ -123,7 +123,7 @@ def draw_landmarks(img, pts, style='fancy', wfp=None, show_flag=False, **kwargs)
         pts = [pts]
     for i in range(len(pts)):
         if dense_flag:
-            plt.plot(pts[i][0, ::6], pts[i][1, ::6], 'o', markersize=0.4, color='c', alpha=0.7)
+            plt.plot(pts[i][0, ::6], pts[i][1, ::6], 'o', markersize=0.9, color='c', alpha=0.7)
         else:
             alpha = 0.8
             markersize = 4
@@ -154,6 +154,8 @@ def draw_landmarks(img, pts, style='fancy', wfp=None, show_flag=False, **kwargs)
 
     if show_flag:
         plt.show()
+        plt.savefig(wfp, dpi=150)
+        print(f'Save visualization result to {wfp}')
 
 
 def cv_draw_landmark(img_ori, pts, box=None, color=GREEN, size=1):

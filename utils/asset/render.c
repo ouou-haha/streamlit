@@ -39,8 +39,8 @@ void _render(const int *triangles,
     float *ver_normal = (float *)calloc(3 * nver, sizeof(float));
     float *colors = (float *)malloc(3 * nver * sizeof(float));
     float *depth_buffer = (float *)calloc(h * w, sizeof(float));
-
-    for (int i = 0; i < ntri; i++)
+    int i;
+    for (i=0;i<ntri;i++)
     {
         tri_p0_ind = triangles[3 * i];
         tri_p1_ind = triangles[3 * i + 1];
@@ -71,8 +71,8 @@ void _render(const int *triangles,
         ver_normal[tri_p1_ind + 2] += p.z;
         ver_normal[tri_p2_ind + 2] += p.z;
     }
-
-    for (int i = 0; i < nver; ++i)
+    int i;
+    for (i=0;i<nver;++i)
     {
         p.x = ver_normal[3 * i];
         p.y = ver_normal[3 * i + 1];
@@ -102,8 +102,8 @@ void _render(const int *triangles,
     ver_mean.x /= nver;
     ver_mean.y /= nver;
     ver_mean.z /= nver;
-
-    for (int i = 0; i < nver; ++i)
+    int i;
+    for (i=0;i<nver;++i)
     {
         colors[3 * i] = vertices[3 * i];
         colors[3 * i + 1] = vertices[3 * i + 1];
@@ -140,9 +140,9 @@ void _render(const int *triangles,
         colors[3 * i + 1] = clip(cos_sum * directional[1] + ambient[1], 0, 1);
         colors[3 * i + 2] = clip(cos_sum * directional[2] + ambient[2], 0, 1);
     }
-
-    for (int i = 0; i < ntri; ++i)
-    {
+    int i;
+    for (i=0;i<ntri;++i)
+    { 
         tri_p0_ind = triangles[3 * i];
         tri_p1_ind = triangles[3 * i + 1];
         tri_p2_ind = triangles[3 * i + 2];
@@ -183,9 +183,9 @@ void _render(const int *triangles,
         if (start.z != 0)
             start.z = 1 / start.z;
 
-        for (p.y = start.y; p.y <= end.y; p.y += 1.0)
+        for (p.y=start.y;p.y<=end.y;p.y+=1.0)
         {
-            for (p.x = start.x; p.x <= end.x; p.x += 1.0)
+            for (p.x=start.x;p.x<=end.x;p.x+= 1.0)
             {
                 v2.x = p.x - p0.x;
                 v2.y = p.y - p0.y;
